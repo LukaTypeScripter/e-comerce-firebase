@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { createAuthUserWithEmailAndPassword } from '../../utlis/firbase/firebase'
+import { createAuthUserWithEmailAndPassword,createUserDocumentFromAuth } from '../../utlis/firbase/firebase'
 const defaultformFields = {
     displayName:'',
     email:'',
@@ -25,8 +25,8 @@ function SignUp() {
             return;
         }
         try {
-          const response = await  createAuthUserWithEmailAndPassword(email,password);
-          console.log(response);
+          const {user} = await  createAuthUserWithEmailAndPassword(email,password);
+          await createUserDocumentFromAuth(user,{displayName})
         } catch (error) {
             console.log("error has happened" + error)
         }
