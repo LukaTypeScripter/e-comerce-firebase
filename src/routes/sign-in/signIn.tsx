@@ -1,10 +1,11 @@
 import React from 'react'
 import {signInWithGooglePopup,createUserDocumentFromAuth} from '../../utlis/firbase/firebase'
 import { log } from 'console';
+import SignUp from '../../components/sign-up/SignUp';
 function SignIn() {
     const logGoogleUser =async () => {
         const {user} = await signInWithGooglePopup();
-        createUserDocumentFromAuth(user)
+       const userDocRef = await createUserDocumentFromAuth(user)
     }
   return (
     <div>
@@ -12,6 +13,7 @@ function SignIn() {
         <button onClick={logGoogleUser}>
             sign
         </button>
+        <SignUp/>
     </div>
   )
 }
