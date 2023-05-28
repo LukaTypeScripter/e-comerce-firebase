@@ -50,7 +50,7 @@ function SignUp() {
         <h2>dont have account ?</h2>
       <span>Sign Up with email and password</span>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="">Enter Name</label>
+        
         <FormInput
         label='Enter Name'
           type="text"
@@ -70,7 +70,7 @@ function SignUp() {
           required
           onChange={handleChange}
         />
-        <label htmlFor="">Enter Password</label>
+       
         <FormInput
         label='Enter Password'
           type="password"
@@ -80,7 +80,7 @@ function SignUp() {
           required
           onChange={handleChange}
         />
-        <label htmlFor="">confirm Password</label>
+        
         <FormInput
         label='confirm Password'
           type="password"
