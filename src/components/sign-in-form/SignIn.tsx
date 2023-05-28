@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import {
   signInAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -9,6 +9,7 @@ import { FirebaseError } from "firebase/app";
 import FormInput from "../form-input/formInput";
 import Button from "../button/Button";
 import './SignIn.scss'
+import { UserContext } from "../../contexts/user.contexts";
 const defaultformFields = {
   email: "",
   password: "",
@@ -17,6 +18,8 @@ function SignInForm() {
   const [formFields, setFormFields] = useState(defaultformFields);
 
   const {  email, password,  } = formFields;
+
+  const {setCurrentUser} = useContext(UserContext)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormFields({
@@ -35,8 +38,12 @@ function SignInForm() {
     e.preventDefault();
    
     try {
-      const respone = await signInAuthUserWithEmailAndPassword(email,password)
-      console.log(respone)
+      const response = await signInAuthUserWithEmailAndPassword(email,password)
+     const user = response?.user
+     if (user) {
+      // Handle the logic for non-null user (User object)
+      setCurrentUser(user);
+    } 
       resetFormFields()
     } catch (error: unknown) {
       if ((error as FirebaseError).code === "auth/wrong-password") {
