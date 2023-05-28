@@ -7,6 +7,8 @@ import {
 import { FirebaseError } from "firebase/app";
 import FormInput from "../form-input/formInput";
 import Button from "../button/Button";
+import { UserContext } from "../../contexts/user.contexts";
+import { useContext } from "react";
 import './signUp.scss'
 const defaultformFields = {
   displayName: "",
@@ -18,7 +20,7 @@ function SignUp() {
   const [formFields, setFormFields] = useState(defaultformFields);
 
   const { displayName, email, password, confirmPassword } = formFields;
-
+  const {setCurrentUser} = useContext(UserContext)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormFields({
       ...formFields,
@@ -36,6 +38,7 @@ function SignUp() {
       if (result && result.user) {
         const { user } = result;
         await createUserDocumentFromAuth(user, { displayName });
+        setCurrentUser(user)
       }
     } catch (error: unknown) {
       if ((error as FirebaseError).code === "auth/email-already-in-use") {
