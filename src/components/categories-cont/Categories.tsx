@@ -8,7 +8,7 @@ function Categories() {
     
     {categories.map(({title,id,imageUrl}) => {
       return (
-        <Category title={title} id={id} imageUrl={imageUrl}/>
+        <Category key={id} title={title} id={id} imageUrl={imageUrl}/>
       )
     })}
    </div>
