@@ -1,7 +1,8 @@
 import { createContext, useState,useEffect } from "react";
 import { createUserDocumentFromAuth, onAuhStateChangedListener } from "../utlis/firbase/firebase";
 interface User {
-  // Define your user properties here
+// Dont know what is types in here it gives me error everytime
+  
 }
 
 interface UserContextValue {
