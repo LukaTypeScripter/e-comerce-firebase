@@ -1,5 +1,5 @@
 import { createContext, useState,useEffect } from "react";
-import { onAuhStateChangedListener } from "../utlis/firbase/firebase";
+import { createUserDocumentFromAuth, onAuhStateChangedListener } from "../utlis/firbase/firebase";
 interface User {
   // Define your user properties here
 }
@@ -18,8 +18,11 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const value: UserContextValue = { currentUser, setCurrentUser };
   useEffect(() => {
-   const unsubscribe =  onAuhStateChangedListener((user:any) => {
-    console.log(user)
+   const unsubscribe =  onAuhStateChangedListener((user:string) => {
+    if(user) {
+      createUserDocumentFromAuth(user,{})
+    }
+    setCurrentUser(user)
    })
 
 
