@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {UserProvider} from './contexts/user.contexts'
 import { BrowserRouter } from 'react-router-dom';
-import { ProductsProvider } from './shop-context/shop.contexts';
+import { CategoriesProvider } from './shop-context/shop.contexts';
 import { DropdownProvider } from './DropDown-context/Dropdown.context';
 
 
@@ -17,11 +17,11 @@ root.render(
     <BrowserRouter>
     
     <UserProvider>
-    <ProductsProvider>
+    <CategoriesProvider>
       <DropdownProvider>
     <App />
     </DropdownProvider>
-    </ProductsProvider>
+    </CategoriesProvider>
     </UserProvider>
     
     </BrowserRouter>
