@@ -1,31 +1,42 @@
-import { createContext, useState,useEffect } from "react";
-import { createUserDocumentFromAuth, onAuhStateChangedListener } from "../utlis/firbase/firebase";
-import SHOP_DATA from "../shop-data.json"
-interface Product {
+import { createContext, useState, useEffect } from "react";
+import { getCategoriesAndDocs } from "../utlis/firbase/firebase";
+
+export interface Product {
   name: string;
-  id:number;
-  imageUrl:string
-  price:number
+  id: number;
+  imageUrl: string;
+  price: number;
 }
 
-interface ProductContextValue {
-    product: Product[];
-    setProduct: React.Dispatch<React.SetStateAction<Product[]>>;
+interface ShopData {
+  [key: string]: Product[];
 }
 
-export const ProductContext = createContext<ProductContextValue>({
-  product: [],
-  setProduct: () => {},
+interface CategoriesContextValue {
+  categoriesMap: ShopData;
+  setCategoriesMap: React.Dispatch<React.SetStateAction<ShopData>>;
+}
+
+export const CategoriesContext = createContext<CategoriesContextValue>({
+  categoriesMap: {},
+  setCategoriesMap: () => {},
 });
 
-export const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
-  const [product, setProduct] = useState<Product[]>(SHOP_DATA);
-  const value: ProductContextValue = { product, setProduct };
-  
+export const CategoriesProvider = ({ children }: { children: React.ReactNode }) => {
+  const [categoriesMap, setCategoriesMap] = useState<ShopData>({});
 
+  useEffect(() => {
+    const getCat = async () => {
+      const map = await getCategoriesAndDocs();
+      setCategoriesMap(map);
+    };
 
-  
+    getCat();
+  }, []);
+
+  const value: CategoriesContextValue = { categoriesMap, setCategoriesMap };
+
   return (
-    <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
+    <CategoriesContext.Provider value={value}>{children}</CategoriesContext.Provider>
   );
 };
