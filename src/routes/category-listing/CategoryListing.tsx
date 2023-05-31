@@ -1,4 +1,5 @@
 import React from 'react'
+import './categoryListing.scss'
 import { useParams } from 'react-router-dom'
 import { useContext,useState,useEffect } from 'react'
 import { CategoriesContext, Product } from '../../shop-context/shop.contexts'
@@ -17,13 +18,18 @@ function CategoryListing() {
     }
   }, [category, categoriesMap]);
     return (
+      <>
+      <h2 className='category-title'>{category?.toUpperCase()}</h2>
+      
     <div className='category-container'>
+      
         {
           products &&  products.map((product) => {
                 return <ProductCard key={product.id} product={product}/>
             })
         }
     </div>
+    </>
   )
 }
 

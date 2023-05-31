@@ -1,16 +1,16 @@
 import {Routes,Route} from 'react-router-dom'
 
 import Home from './routes/home/Home';
-import Navigation from './routes/navigation/Navigation';
+import NavigationLinks from './routes/navigation/NavigationLinks';
 import Autentecition from './routes/sign-in/Autentecition';
 import Shop from './routes/shop/Shop';
 import CheckOut from './routes/checkout/CheckOut';
 
-function App() {
+function App() { 
  
   return (
     <Routes>
-      <Route path="/" element={<Navigation/>}>
+      <Route path="/" element={<NavigationLinks/>}>
         <Route index element={<Home/>} />
         <Route path='shop/*' element={<Shop/>} />
         <Route path='auth' element={<Autentecition/>} />

@@ -1,17 +1,17 @@
 import React from 'react'
 import { categories } from '../../data'
-import Category from '../category-item/category-item.component'
-import './categories.scss'
+import Directory from '../category-item/Directory'
+import { CategoriesCont } from './CategoryStyles/categories'
 function Categories() {
   return (
-    <div className="categories-container">
+    <CategoriesCont>
     
-    {categories.map(({title,id,imageUrl}) => {
+    {categories.map(({title,id,imageUrl,route}) => {
       return (
-        <Category key={id} title={title} id={id} imageUrl={imageUrl}/>
+        <Directory key={id} title={title} id={id} imageUrl={imageUrl} route={route}/>
       )
     })}
-   </div>
+   </CategoriesCont>
   )
 }
 

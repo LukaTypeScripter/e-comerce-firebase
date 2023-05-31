@@ -1,5 +1,5 @@
 import React from 'react'
-import './cartItems.scss'
+import { CartItemContainer,ItemsDetails,Name,Image,Price } from './CartItemStyles/cartItems';
 interface Item {
   id: number;
   name: string;
@@ -15,15 +15,15 @@ interface CartItemProps {
 function CartItem({cartItems}:CartItemProps) {
     const { imageUrl, price, name, quantity} = cartItems
   return (
-    <div className='cart-item-container'>
-    <img src={imageUrl} alt={`${name}`} />
-    <div className='item-details'>
-      <span className='name'>{name}</span>
-      <span className='price'>
+    <CartItemContainer>
+    <Image src={imageUrl} alt={`${name}`} />
+    <ItemsDetails>
+      <Name>{name}</Name>
+      <Price >
         {quantity} x ${price}
-      </span>
-    </div>
-  </div>
+      </Price>
+    </ItemsDetails>
+  </CartItemContainer>
   )
 }
 
