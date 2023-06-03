@@ -4,3 +4,15 @@
     width: 900px;
     margin: 30px auto;
 }
+
+@media only screen and (max-width: 780px) {
+    .auth-container {
+        flex-direction: column;
+        margin-bottom: 30px;
+        height: 1000px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-5%, -20%);
+    }
+  }

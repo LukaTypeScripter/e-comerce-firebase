@@ -16,7 +16,7 @@ height: 100%;
 `
 
 export const NavLinksContainer = styled.div`
-  width: 50%;
+   
       height: 100%;
       display: flex;
       align-items: center;

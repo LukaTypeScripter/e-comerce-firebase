@@ -33,6 +33,14 @@ export const Body = styled.div`
         font-weight: lighter;
         font-size: 16px;
       }
+      @media only screen and (max-width: 375px) {
+        height: 70px;
+        padding: 0 5px;
+}
+@media only screen and (max-width: 780px) {
+        height: 75px;
+        padding: 0 10px;
+}
 `
 export const DirectoryItemCont = styled.div `
 min-width: 30%;
